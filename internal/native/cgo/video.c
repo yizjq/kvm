@@ -119,10 +119,10 @@ static void populate_venc_attr(VENC_CHN_ATTR_S *stAttr, RK_U32 bitrate, RK_U32 m
 {
     memset(stAttr, 0, sizeof(VENC_CHN_ATTR_S));
 
-    stAttr->stRcAttr.enRcMode = VENC_RC_MODE_H264VBR;
-    stAttr->stRcAttr.stH264Vbr.u32BitRate = bitrate;
-    stAttr->stRcAttr.stH264Vbr.u32MaxBitRate = max_bitrate;
-    stAttr->stRcAttr.stH264Vbr.u32Gop = 60;
+    // 使用CBR模式确保恒定高比特率
+    stAttr->stRcAttr.enRcMode = VENC_RC_MODE_H264CBR;
+    stAttr->stRcAttr.stH264Cbr.u32BitRate = bitrate;
+    stAttr->stRcAttr.stH264Cbr.u32Gop = 60;
 
     stAttr->stVencAttr.enType = RK_VIDEO_ID_AVC;
     stAttr->stVencAttr.enPixelFormat = RK_FMT_YUV422_YUYV;
